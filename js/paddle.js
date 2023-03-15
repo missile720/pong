@@ -15,4 +15,8 @@ class Paddle {
         rect(this.positionX, this.positionY, this.width, this.height);
     }
 
+    //method that updates the position of the paddles
+    move(_y){
+        this.positionY += _y;
+    }
 }

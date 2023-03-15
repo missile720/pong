@@ -1,7 +1,7 @@
 let paddle1;
 let paddle2;
 let ball;
-let gameState = false;
+let gameState = false; //initial game state
 
 //creates the canvas and the initial position for the ball and paddles
 function setup() {
@@ -12,11 +12,34 @@ function setup() {
   ballInit = new Ball(width/2,height/2,10,10);
 }
 
-//constantly runs 
+//p5.js draw function constantly runs
 function draw() {
   background(150);
 
   paddle1.create();
   paddle2.create();
   ballInit.create();
+
+  //function call for moving paddles
+  paddleMove();
+}
+
+//function that moves the paddle when key is down
+function paddleMove(){
+  //ascii 87 is W
+  if (keyIsDown(87)) {
+    paddle1.move(-5);
+  }
+  //ascii 83 is S
+  else if (keyIsDown(83)) {
+    paddle1.move(5);
+  }
+  //ascii 79 is O
+  else if (keyIsDown(79)) {
+    paddle2.move(-5);
+  }
+  //ascii 75 is K
+  else if (keyIsDown(75)) {
+    paddle2.move(5);
+  }
 }
