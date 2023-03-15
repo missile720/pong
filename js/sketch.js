@@ -20,8 +20,15 @@ function draw() {
   paddle2.create();
   ballInit.create();
 
-  //function call for moving paddles
-  paddleMove();
+  //check to see if gameState is true
+  if(gameState){
+    //function call for moving paddles
+    paddleMove();
+  }
+  else{
+
+  }
+
 }
 
 //function that moves the paddle when key is down
@@ -41,5 +48,21 @@ function paddleMove(){
   //ascii 75 is K
   else if (keyIsDown(75)) {
     paddle2.move(5);
+  }
+}
+
+function keyPressed(){
+  //when spacebar is pressed game starts
+  if(key === ' '){
+    gameState = true;
+  }
+  //this should reset the game to initial conditions
+  else if(key === 'r'){
+    //change back gameState
+    gameState = false;
+    //call reset for paddles and ball
+    paddle1.reset();
+    paddle2.reset();
+    ball.reset();
   }
 }
