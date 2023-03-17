@@ -1,11 +1,12 @@
 //Initialize paddle class
 class Paddle {
-    //constructor for the position and size of the paddles
-    constructor(_positionX, _positionY, _width, _height){
+    //constructor for the position, size, and score of the paddles
+    constructor(_positionX, _positionY, _width, _height, _score = 0){
         this.width = _width;
         this.height = _height;
         this.positionX = _positionX;
         this.positionY = _positionY;
+        this.score = _score;
     }
 
     //method that creates the paddles
