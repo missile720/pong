@@ -12,11 +12,13 @@ function setup() {
   ballInit = new Ball(width/2,height/2,10,10);
 }
 
+//function that runs whenever window is resized
 function windowResized() {
+  //function that resizes the canvas
   resizeCanvas(windowWidth, windowHeight);
 
-  paddle1 = new Paddle(30,height/2-50,10,100);
-  paddle2 = new Paddle(width-30,height/2-50,10,100);
+  paddle1 = new Paddle(30,height/2-50,10,100,paddle1.score);
+  paddle2 = new Paddle(width-30,height/2-50,10,100,paddle2.score);
   ballInit = new Ball(width/2,height/2,10,10);
 }
 
@@ -25,19 +27,21 @@ function windowResized() {
 function draw() {
   background(150);
 
-  paddle1.create();
-  paddle2.create();
-  ballInit.create();
-
   //check to see if gameState is true
   if(gameState){
     //function call for moving paddles
     paddleMove();
+    //function call for displaying score
+    scoreScreen();
   }
   else{
     //function runs when game not started
     startScreen();
   }
+
+  paddle1.create();
+  paddle2.create();
+  ballInit.create();
 
 }
 
@@ -84,4 +88,12 @@ function startScreen(){
   textAlign(CENTER);
   text('Start Game:', width/2, 100);
   text('Spacebar', width/2, height-100);
+}
+
+function scoreScreen(){
+  noStroke();
+  fill(255);
+  textSize(50);
+  textAlign(CENTER);
+  text(`${paddle1.score} : ${paddle2.score}`, width/2, 100);
 }
