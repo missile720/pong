@@ -63,7 +63,7 @@ function draw() {
     if(ballState === "right"){
       paddle1.score += 1;
       //function call for next round
-      if(paddle1.score === 1){
+      if(paddle1.score === 5){
         winningPlayer = "Player 1";
         winState = true;
       }
@@ -74,7 +74,7 @@ function draw() {
     else if(ballState === 'left'){
       paddle2.score += 1;
       //function call for next round
-      if(paddle2.score === 1){
+      if(paddle2.score === 5){
         winningPlayer = "Player 2";
         winState = true;
       }
@@ -124,8 +124,18 @@ function startScreen(){
   fill(255);
   textSize(50);
   textAlign(CENTER);
-  text('Start Game:', width/2, 100);
-  text('Spacebar', width/2, height-100);
+  text('Start Game: Spacebar', width/2, 100);
+  text('First to 5 wins!', width/2, height-100);
+
+  textAlign(LEFT);
+  text('Controls:', 10, 150);
+  text('Up: W', 10, 200);
+  text('Down: S', 10, 250);
+
+  textAlign(RIGHT);
+  text('Controls:', width-10, 150);
+  text('Up: O', width-10, 200);
+  text('Down: K', width-10, 250);
 }
 
 function scoreScreen(){
