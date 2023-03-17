@@ -4,6 +4,8 @@ let ball;
 let gameState = false; //initial game state
 let gameRound = true; //game going but not reset
 let ballState = false;
+let winState = false; //holder for if winner was determined
+let winningPlayer; //holder for winning player
 
 //creates the canvas and the initial position for the ball and paddles
 function setup() {
@@ -35,8 +37,13 @@ function draw() {
 
   //check to see if gameState is true
   if(gameState){
-    //function call for moving paddles
-    paddleMove();
+    if(!winState){
+      //function call for moving paddles
+      paddleMove();
+    }
+    else{
+      win(winningPlayer);
+    }
     //function call for displaying score
     scoreScreen();
     
@@ -56,12 +63,24 @@ function draw() {
     if(ballState === "right"){
       paddle1.score += 1;
       //function call for next round
-      nextRound();
+      if(paddle1.score === 1){
+        winningPlayer = "Player 1";
+        winState = true;
+      }
+      else{
+        nextRound();
+      }
     }
     else if(ballState === 'left'){
       paddle2.score += 1;
       //function call for next round
-      nextRound();
+      if(paddle2.score === 1){
+        winningPlayer = "Player 2";
+        winState = true;
+      }
+      else{
+        nextRound();
+      }
     }
   }
 
@@ -87,6 +106,7 @@ function paddleMove(){
   }
 }
 
+//function runs whenever key is pressed
 function keyPressed(){
   //when spacebar is pressed game starts
   if(key === ' '){
@@ -117,7 +137,7 @@ function scoreScreen(){
 }
 
 function nextRound(){
-  //change back gameState
+  //change back gameRound
   ballState = false;
   gameRound = false;
   //call reset for ball
@@ -125,13 +145,27 @@ function nextRound(){
 }
 
 function reset(){
-  //change back gameState
+  //change back gameState, gameRound and winState
   gameState = false;
   gameRound = true;
+  winState = false;
   //call reset for paddles and ball
   paddle1.reset();
   paddle2.reset();
   paddle1.resetScore();
   paddle2.resetScore();
   ball1.reset();
+}
+
+function win(winner){
+  //change back gameRound
+  ballState = false;
+  gameRound = false;
+
+  noStroke();
+  fill(255);
+  textSize(50);
+  textAlign(CENTER);
+  text(`${winner} wins!`, width/2, height/2);
+  text(`Press R to reset`, width/2, height-100);
 }
