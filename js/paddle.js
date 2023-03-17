@@ -7,6 +7,8 @@ class Paddle {
         this.positionX = _positionX;
         this.positionY = _positionY;
         this.score = _score;
+        this.originX = _positionX;
+        this.originY = _positionY;
     }
 
     //method that creates the paddles
@@ -20,5 +22,10 @@ class Paddle {
     move(_y){
         this.positionY += _y;
         this.positionY = constrain(this.positionY,5,windowHeight-105); //contrains the position inside the canvas box
+    }
+
+    reset(){
+        this.positionX = this.originX;
+        this.positionY = this.originY;
     }
 }
