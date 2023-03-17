@@ -6,6 +6,8 @@ class Ball {
         this.height = _height;
         this.positionX = _positionX;
         this.positionY = _positionY;
+        this.xMove = 4 * (Math.random() < 0.5 ? -1 : 1); //randomize starting directional movement
+        this.yMove = 4 * (Math.random() < 0.5 ? -1 : 1);
     }
 
     //method that creates the ball
@@ -14,4 +16,31 @@ class Ball {
         fill(0,0,255);
         ellipse(this.positionX, this.positionY, this.width, this.height);
     }
+
+    //method that moves ball
+    move(){
+        this.positionX += this.xMove;
+        this.positionY += this.yMove;
+
+        //checks if ball hits top or bottom of canvas
+        if(this.positionY < 0 || this.positionY > windowHeight){
+            this.positionY = constrain(this.positionY,0,windowHeight); //contrains the position inside the canvas box
+            this.yMove *= -1;
+        }
+
+        //checks if ball hits paddle
+        for(let paddle of [paddle1,paddle2]){
+            //check for x axis
+            if((this.positionX + this.width/2 < paddle.positionX + paddle.width) && (this.positionX + this.width/2 > paddle.positionX)){
+                //check for y axis
+                if((this.positionY + this.height/2 < paddle.positionY + paddle.height) && (this.positionY + this.height/2 > paddle.positionY)){
+                    this.xMove *= -1.1; //change direction as well as increase speed
+                    this.yMove *= 1.1
+                }
+            }
+        }
+        
+    }
+
+
 }
