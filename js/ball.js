@@ -42,5 +42,14 @@ class Ball {
         
     }
 
-
+    //method for checking if ball hits left or right wall
+    boundary(){
+        //checks if ball hits left or right of canvas
+        if(this.positionX < 0){
+            return "left";
+        }
+        else if(this.positionX > windowHeight){
+            return 'right';
+        }
+    }
 }

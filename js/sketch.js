@@ -2,6 +2,7 @@ let paddle1;
 let paddle2;
 let ball;
 let gameState = false; //initial game state
+let ballState = false;
 
 //creates the canvas and the initial position for the ball and paddles
 function setup() {
@@ -39,11 +40,31 @@ function draw() {
     ballInit.move();
     //function call for displaying score
     scoreScreen();
+    
+    //method call for ball hitting goal
+    ballState = ballInit.boundary();
+
   }
   else{
     //function runs when game not started
     startScreen();
   }
+
+  if(ballState){
+    if(ballState === "right"){
+      paddle1.score += 1;
+      ballState = false;
+      //function call for next round
+      nextRound();
+    }
+    else if(ballState === 'left'){
+      paddle2.score += 1;
+      ballState = false;
+      //function call for next round
+      nextRound();
+    }
+  }
+
 }
 
 //function that moves the paddle when key is down
@@ -97,4 +118,13 @@ function scoreScreen(){
   textSize(50);
   textAlign(CENTER);
   text(`${paddle1.score} : ${paddle2.score}`, width/2, 100);
+}
+
+function nextRound(){
+  //change back gameState
+  gameState = false;
+  //call reset for paddles and ball
+  paddle1.reset();
+  paddle2.reset();
+  ball.reset();
 }
