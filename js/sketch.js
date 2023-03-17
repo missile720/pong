@@ -14,7 +14,7 @@ function setup() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  
+
   paddle1 = new Paddle(30,height/2-50,10,100);
   paddle2 = new Paddle(width-30,height/2-50,10,100);
   ballInit = new Ball(width/2,height/2,10,10);
@@ -78,5 +78,10 @@ function keyPressed(){
 }
 
 function startScreen(){
-
+  noStroke();
+  fill(255);
+  textSize(50);
+  textAlign(CENTER);
+  text('Start Game:', width/2, 100);
+  text('Spacebar', width/2, height-100);
 }
