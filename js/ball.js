@@ -58,5 +58,7 @@ class Ball {
     reset(){
         this.positionX = this.originX;
         this.positionY = this.originY;
+        this.xMove = 4 * (Math.random() < 0.5 ? -1 : 1); //randomize starting directional movement
+        this.yMove = 4 * (Math.random() < 0.5 ? -1 : 1);
     }
 }

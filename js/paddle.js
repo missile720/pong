@@ -28,4 +28,8 @@ class Paddle {
         this.positionX = this.originX;
         this.positionY = this.originY;
     }
+
+    resetScore(){
+        this.score = 0;
+    }
 }
