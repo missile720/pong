@@ -27,10 +27,16 @@ function windowResized() {
 function draw() {
   background(150);
 
+  paddle1.create();
+  paddle2.create();
+  ballInit.create();
+
   //check to see if gameState is true
   if(gameState){
     //function call for moving paddles
     paddleMove();
+    //method call for ball move
+    ballInit.move();
     //function call for displaying score
     scoreScreen();
   }
@@ -38,11 +44,6 @@ function draw() {
     //function runs when game not started
     startScreen();
   }
-
-  paddle1.create();
-  paddle2.create();
-  ballInit.create();
-
 }
 
 //function that moves the paddle when key is down
