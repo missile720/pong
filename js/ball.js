@@ -6,6 +6,8 @@ class Ball {
         this.height = _height;
         this.positionX = _positionX;
         this.positionY = _positionY;
+        this.originX = _positionX;
+        this.originY = _positionY;
         this.xMove = 4 * (Math.random() < 0.5 ? -1 : 1); //randomize starting directional movement
         this.yMove = 4 * (Math.random() < 0.5 ? -1 : 1);
     }
@@ -48,8 +50,13 @@ class Ball {
         if(this.positionX < 0){
             return "left";
         }
-        else if(this.positionX > windowHeight){
+        else if(this.positionX > windowWidth){
             return 'right';
         }
+    }
+
+    reset(){
+        this.positionX = this.originX;
+        this.positionY = this.originY;
     }
 }
