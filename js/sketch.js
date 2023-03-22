@@ -2,7 +2,7 @@ let paddle1;
 let paddle2;
 let ball;
 let gameState = false; //initial game state
-let gameRound = true; //game going but not reset
+let gameRound = false; //game going but not reset
 let ballState = false;
 let winState = false; //holder for if winner was determined
 let winningPlayer; //holder for winning player
