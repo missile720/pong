@@ -13,7 +13,7 @@ function setup() {
 
   paddle1 = new Paddle(30,height/2-50,10,100);
   paddle2 = new Paddle(width-30,height/2-50,10,100);
-  ball1 = new Ball(width/2,height/2,10,10);
+  ball = new Ball(width/2,height/2,10,10);
 }
 
 //function that runs whenever window is resized
@@ -23,7 +23,7 @@ function windowResized() {
 
   paddle1 = new Paddle(30,height/2-50,10,100,paddle1.score);
   paddle2 = new Paddle(width-30,height/2-50,10,100,paddle2.score);
-  ball1 = new Ball(width/2,height/2,10,10);
+  ball = new Ball(width/2,height/2,10,10);
 }
 
 
@@ -33,7 +33,7 @@ function draw() {
 
   paddle1.create();
   paddle2.create();
-  ball1.create();
+  ball.create();
 
   //check to see if gameState is true
   if(gameState){
@@ -49,9 +49,9 @@ function draw() {
     
     if(gameRound){
       //method call for ball move
-      ball1.move();
+      ball.move();
       //method call for ball hitting goal
-      ballState = ball1.boundary();
+      ballState = ball.boundary();
     }
   }
   else{
@@ -151,7 +151,7 @@ function nextRound(){
   ballState = false;
   gameRound = false;
   //call reset for ball
-  ball1.reset();
+  ball.reset();
 }
 
 function reset(){
@@ -164,7 +164,7 @@ function reset(){
   paddle2.reset();
   paddle1.resetScore();
   paddle2.resetScore();
-  ball1.reset();
+  ball.reset();
 }
 
 function win(winner){
